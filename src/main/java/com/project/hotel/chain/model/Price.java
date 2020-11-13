@@ -13,6 +13,12 @@ import javax.persistence.Table;
 @Table (name = "price")
 public class Price {
 	
+	@Override
+	public String toString() {
+		return "Price [id=" + id + ", wday_fidelity=" + wday_fidelity + ", wday_regular=" + wday_regular
+				+ ", wend_fidelity=" + wend_fidelity + ", wend_regular=" + wend_regular + ", hotel=" + hotel + "]";
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

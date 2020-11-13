@@ -17,6 +17,12 @@ import javax.persistence.Table;
 @Table (name = "hotel")
 public class Hotel {
 
+	@Override
+	public String toString() {
+		return "Hotel [id=" + id + ", name=" + name + ", email=" + email + ", telephone=" + telephone
+				+ ", classification=" + classification + "]";
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
