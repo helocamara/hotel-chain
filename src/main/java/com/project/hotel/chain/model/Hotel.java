@@ -1,12 +1,43 @@
 package com.project.hotel.chain.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table (name = "hotel")
 public class Hotel {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column (nullable = false)
 	private String name;
+	
+	@Column (nullable = false)
 	private String email;
+	
+	@Column (nullable = false)
 	private Long telephone;
+	
+	@Column (nullable = false)
 	private Long classification;
+	
+	@OneToOne(fetch = FetchType.EAGER, optional = false)
+	private Price price;
+	
+	@OneToMany(mappedBy = "hotel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Reservation> reservation;
 
 	public Hotel() {
 		super();

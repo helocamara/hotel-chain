@@ -1,11 +1,37 @@
 package com.project.hotel.chain.model;
 
-public class Price {
-	private Long wday_fidelity;
-	private Long wday_regular;
-	private Long wend_fidelity;
-	private Long wend_regular;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table (name = "price")
+public class Price {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@Column (nullable = false)
+	private Long wday_fidelity;
+	
+	@Column (nullable = false)
+	private Long wday_regular;
+	
+	@Column (nullable = false)
+	private Long wend_fidelity;
+	
+	@Column (nullable = false)
+	private Long wend_regular;
+	
+	@OneToOne(fetch = FetchType.EAGER, optional = false)
+	private Hotel hotel;
+	
 	public Price() {
 		super();
 	}

@@ -2,12 +2,37 @@ package com.project.hotel.chain.model;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table (name = "reservation")
 public class Reservation {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column (nullable = false, columnDefinition = "Date")
 	private Date checkin;
+	
+	@Column (nullable = false, columnDefinition = "Date")
 	private Date checkout;
+	
+	@Column (nullable = false)
 	private Long value;
+
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	private Hotel hotel;
+	
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	private Guest guest;
 
 	public Reservation() {
 		super();
